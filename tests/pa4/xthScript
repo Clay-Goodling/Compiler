@@ -1,0 +1,35 @@
+build
+
+xic ("Test --irgen") "-libpath $(testpath) --irgen -d $(testpath)" {
+    test0.xi;
+    test1.xi;
+    test2.xi;
+    test3.xi;
+    test4.xi;
+    test5.xi;
+    test6.xi;
+    test7.xi;
+    test8.xi;
+    test9.xi;
+    test10.xi;
+    test11.xi;
+    test12.xi;
+    test13.xi;
+}
+
+xic ("Test --irgen -O") "-libpath $(testpath) --irgen -O -d $(testpath)" {
+    test0.xi;
+    test1.xi;
+    test2.xi;
+    test3.xi;
+    test4.xi;
+    test5.xi;
+    test6.xi;
+    test7.xi;
+    test8.xi;
+    test9.xi;
+    test10.xi;
+    test11.xi;
+    test12.xi;
+    test13.xi;
+}

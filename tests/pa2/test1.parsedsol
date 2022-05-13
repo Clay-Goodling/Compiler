@@ -1,0 +1,18 @@
+( ((use io)) 
+  ( (foo ((a int) (b ([] bool))) (int)
+      ( (if true ((return a))
+                  ( 
+                    (if false ((return b)) 
+                              ((return))
+                    )
+                  ) 
+        )
+        (while true (
+          (while true ())
+        ))
+        (if false ((return (length b))) ) 
+        (return)
+      )
+    )
+  )
+)

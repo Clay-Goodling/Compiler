@@ -1,0 +1,3 @@
+//Different signature of print from I/O
+
+print(str: int)     // Print a string to standard output.

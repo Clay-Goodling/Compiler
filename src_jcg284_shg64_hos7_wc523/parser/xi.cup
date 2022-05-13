@@ -1,0 +1,455 @@
+package src_jcg284_shg64_hos7_wc523.parser;
+
+import java_cup.runtime.Symbol;
+
+import src_jcg284_shg64_hos7_wc523.lexer.*;
+import src_jcg284_shg64_hos7_wc523.ast.*;
+
+import java.util.*;
+
+
+parser code {:
+  public void unrecovered_syntax_error(Symbol cur_token) throws Exception {
+    report_fatal_error("Syntax error", cur_token);
+  }
+
+  public void syntax_error(Symbol cur_token) {
+    // do nothing
+  }
+
+  public void report_fatal_error(String message, Object info) throws Exception {
+    report_error(message, info);
+    done_parsing();
+    throw new SyntacticException((Symbol)info);
+  }
+
+  public void report_error(String message, Object info) {
+    // System.out.println(message);
+  }
+
+  public static class SyntacticException extends Exception {
+    String token;
+    public int line, column;
+    public String msg;
+
+    public SyntacticException(Symbol cur_token) {
+      Token t = (Token)cur_token.value;
+      line = t.getLine();
+      column = t.getColumn();
+      token = t.toString().substring(t.toString().indexOf(" ") + 1);
+      msg = "Unexpected token: " + token;
+    }
+
+    public String getMessage() {
+      String s = String.format("%d:%d error: Unexpected token: ", line, column);
+      return s + token;
+    }
+  }
+:};
+
+
+terminal Token IDENTIFIER;
+terminal Token STRING_LITERAL;
+terminal Token CHARACTER_LITERAL;
+terminal Token INTEGER_LITERAL;
+terminal Token XI, IXI, TRUE, FALSE, INT, BOOL, IF, ELSE, WHILE, BREAK, RETURN,
+  USE, LENGTH, PLUS, MINUS, TIMES, DIVIDE, MODULO, NOT, LT, LEQ, GT, GEQ, AND,
+  OR, EQUAL, NOT_EQUAL, GETS, OPEN_BRACKET, CLOSE_BRACKET, OPEN_PAREN,
+  CLOSE_PAREN, COLON, OPEN_BRACE, CLOSE_BRACE, COMMA, SEMICOLON, UNDERSCORE,
+  UPPER, INT_NEGATION;
+
+non terminal Identifier identifier;
+
+non terminal Node program_or_interface;
+non terminal Program program;
+non terminal Interface interface;
+non terminal List<MethodInterface> method_interface_list;
+non terminal MethodInterface method_interface;
+non terminal List<Use> non_empty_use_list;
+non terminal Use use;
+non terminal List<Method> non_empty_method_list;
+non terminal Method method;
+non terminal List<Decl> decl_list, non_empty_decl_list;
+non terminal Decl decl;
+non terminal List<Type> type_list, non_empty_type_list;
+non terminal Type type, array_type;
+non terminal List<Object> initialized_array, partially_initialized_array;
+non terminal Block block, block_or_statement;
+non terminal List<Stmt> statement_list, non_empty_statement_list;
+non terminal Stmt statement, non_block_statement;
+non terminal Stmt assignment, if_statement, while_statement;
+non terminal Assignee assignee;
+non terminal List<Assignee> non_empty_assignee_list;
+non terminal ArrayAccess assignee_access;
+non terminal Expr expr;
+non terminal Return return_statement;
+non terminal MethodCall method_call;
+non terminal ProcedureCall procedure_call;
+non terminal List<Expr> expr_list, non_empty_expr_list;
+non terminal Type bool_type;
+non terminal Type int_type;
+non terminal Wildcard wildcard;
+
+precedence nonassoc IF;
+precedence nonassoc ELSE;
+
+precedence left OR;
+precedence left AND;
+precedence left EQUAL, NOT_EQUAL;
+precedence left LT, LEQ, GEQ, GT;
+precedence left PLUS, MINUS;
+precedence left TIMES, UPPER, DIVIDE, MODULO;
+precedence nonassoc NOT, INT_NEGATION;
+precedence left OPEN_PAREN, OPEN_BRACKET;
+
+precedence left COMMA;
+
+start with program_or_interface;
+
+identifier
+  ::= IDENTIFIER:x
+      {: RESULT = new Identifier("" + x.getAttribute(), x.getLine(),
+             x.getColumn()); :}
+;
+
+wildcard
+  ::= UNDERSCORE:u
+      {: RESULT = new Wildcard(u.getLine(), u.getColumn()); :}
+;
+
+bool_type
+  ::= BOOL
+      {: RESULT = new BoolType(); :}
+;
+
+int_type
+  ::= INT
+    {: RESULT = new IntType(); :}
+;
+
+program_or_interface
+  ::= program:p      
+      {: RESULT = p; :}
+    | interface:i    
+      {: RESULT = i; :}
+;
+
+program
+  ::= XI non_empty_method_list:m
+      {: RESULT = new Program(new ArrayList<Use>(), m); :}
+    | XI non_empty_use_list:u non_empty_method_list:m
+      {: RESULT = new Program(u, m); :}
+;
+
+non_empty_use_list
+    ::= use:u 
+      {: List<Use> l = new ArrayList<>(); l.add(u); RESULT = l; :}
+    | non_empty_use_list:l use:u 
+      {: l.add(u); RESULT = l; :}
+;
+
+use
+  ::= USE:u identifier:x
+      {: RESULT = new Use(x, u.getLine(), u.getColumn()); :}
+    | USE:u identifier:x SEMICOLON
+      {: RESULT = new Use(x, u.getLine(), u.getColumn()); :}
+;
+
+non_empty_method_list
+  ::= method:m                         
+      {: List<Method> l = new ArrayList<Method>(); l.add(m); RESULT = l; :}
+    | non_empty_method_list:l method:m 
+      {: l.add(m); RESULT = l; :}
+;
+
+method
+  ::= identifier:x OPEN_PAREN decl_list:p CLOSE_PAREN type_list:t block:b
+      {: RESULT = new Method(x, p, t, b); :}
+;
+
+decl_list
+  ::= /* empty */
+      {: RESULT = new ArrayList<Decl>(); :}
+    | non_empty_decl_list:l
+      {: RESULT = l; :}
+;
+
+non_empty_decl_list
+  ::= decl:d
+      {: List<Decl> l = new ArrayList<Decl>(); l.add(d); RESULT = l; :}
+    | non_empty_decl_list:l COMMA decl:d
+      {: l.add(d); RESULT = l; :}
+;
+
+decl
+  ::= identifier:x COLON type:t
+    {: RESULT = new Decl(x, t); :}
+;
+
+type
+  ::= int_type:t
+      {: RESULT = t; :}
+    | bool_type:t
+      {: RESULT = t; :}
+    | array_type:t
+      {: RESULT = t; :}
+;
+
+array_type
+  ::= int_type:t OPEN_BRACKET CLOSE_BRACKET
+      {: RESULT = new ArrayType(t); :}
+    | bool_type:t OPEN_BRACKET CLOSE_BRACKET
+      {: RESULT = new ArrayType(t); :}
+    | array_type:t OPEN_BRACKET CLOSE_BRACKET
+      {: RESULT = new ArrayType(t); :}
+;
+
+type_list
+  ::= /* empty */
+      {: RESULT = new ArrayList<Type>(); :}
+    | COLON non_empty_type_list:l
+      {: RESULT = l; :}
+;
+
+non_empty_type_list
+  ::= type:t
+      {: List<Type> l = new ArrayList<Type>(); l.add(t); RESULT = l; :}
+    | non_empty_type_list:l COMMA type:t
+      {: l.add(t); RESULT = l; :}
+;
+
+interface
+  ::= IXI method_interface_list:l
+      {: RESULT = new Interface(l); :}
+;
+
+method_interface_list
+  ::= method_interface:i
+      {: List<MethodInterface> l = new ArrayList<>(); l.add(i); RESULT = l; :}
+    | method_interface_list:l method_interface:i
+      {: l.add(i); RESULT = l; :}
+;
+
+method_interface
+  ::= identifier:x OPEN_PAREN decl_list:p CLOSE_PAREN type_list:t
+      {: RESULT = new MethodInterface(x, p, t); :}
+    | identifier:x OPEN_PAREN decl_list:p CLOSE_PAREN type_list:t SEMICOLON
+      {: RESULT = new MethodInterface(x, p, t); :}
+;
+
+block
+  ::= OPEN_BRACE:b statement_list:l CLOSE_BRACE
+      {: RESULT = new Block(l, b.getLine(), b.getColumn()); :}
+    | OPEN_BRACE:b statement_list:l return_statement:r CLOSE_BRACE
+      {: l.add(r); RESULT = new Block(l, b.getLine(), b.getColumn()); :}
+    | OPEN_BRACE:b statement_list:l return_statement:r SEMICOLON CLOSE_BRACE
+      {: l.add(r); RESULT = new Block(l, b.getLine(), b.getColumn()); :}
+;
+
+block_or_statement
+  ::= block:b
+      {: RESULT = b; :}
+    | non_block_statement:s
+      {: RESULT = new Block(s); :}
+;
+
+statement_list
+  ::= /* empty */
+      {: RESULT = new ArrayList<Stmt>(); :}
+    | non_empty_statement_list:l
+      {: RESULT = l; :}
+;
+
+non_empty_statement_list
+  ::= statement:s
+      {: List<Stmt> l = new ArrayList<>(); l.add(s); RESULT = l; :}
+    | statement:s SEMICOLON
+      {: List<Stmt> l = new ArrayList<>(); l.add(s); RESULT = l; :}
+    | non_empty_statement_list:l statement:s
+      {: l.add(s); RESULT = l; :}
+    | non_empty_statement_list:l statement:s SEMICOLON
+      {: l.add(s); RESULT = l; :}
+;
+
+return_statement
+  ::= RETURN:r expr_list:l
+    {: RESULT = new Return(l, r.getLine(), r.getColumn()); :}
+;
+
+statement
+  ::= block:b
+      {: RESULT = b; :}
+    | non_block_statement:s
+      {: RESULT = s; :}
+;
+
+non_block_statement
+  ::= assignment:a
+      {: RESULT = a; :}
+    | if_statement:i
+      {: RESULT = i; :}
+    | while_statement:w
+      {: RESULT = w; :}
+    | procedure_call:f
+      {: RESULT = f; :}
+    | decl:d
+      {: RESULT = new DeclStmt(d); :}
+    // | BREAK:b
+    //   {: RESULT = new Break(b.getLine(), b.getColumn()); :}
+    | identifier:x COLON initialized_array:l
+      {: RESULT = new ArrayInit(x, l); :}
+    | identifier:x COLON partially_initialized_array:l
+      {: RESULT = new ArrayInit(x, l); :}
+;
+
+initialized_array
+  ::= int_type:t OPEN_BRACKET expr:e CLOSE_BRACKET
+      {: List<Object> l = new ArrayList<>(); l.add(t); l.add(e); RESULT = l; :}
+    | bool_type:t OPEN_BRACKET expr:e CLOSE_BRACKET
+      {: List<Object> l = new ArrayList<>(); l.add(t); l.add(e); RESULT = l; :}
+    | initialized_array:l OPEN_BRACKET expr:e CLOSE_BRACKET
+      {: l.add(e); RESULT = l; :}
+;
+
+partially_initialized_array
+  ::= initialized_array:l OPEN_BRACKET CLOSE_BRACKET
+      {: l.add(null); RESULT = l; :}
+    | partially_initialized_array:l OPEN_BRACKET CLOSE_BRACKET
+      {: l.add(null); RESULT = l; :}
+;
+
+while_statement
+  ::= WHILE:w expr:e block_or_statement:b 
+    {: RESULT = new While(e, b, w.getLine(), w.getColumn()); :}
+;
+
+if_statement
+  ::= IF:i expr:e block_or_statement:b
+      {: RESULT = new IfStatement(e, b, i.getLine(), i.getColumn()); :}
+    | IF:i expr:e block_or_statement:b1 ELSE block_or_statement:b2
+      {: RESULT = new IfStatement(e, b1, b2, i.getLine(), i.getColumn()); :}
+;
+
+assignment
+  ::= assignee:a GETS expr:e
+    {: RESULT = new Assignment(a, e); :}
+    | non_empty_assignee_list:l GETS expr:e
+    {: RESULT = new Assignment(l, e); :}
+;
+
+assignee
+  ::= identifier:x
+      {: RESULT = x; :}
+    | assignee_access:a
+      {: RESULT = a; :}
+;
+
+non_empty_assignee_list
+  ::= decl:d
+      {: List<Assignee> l = new ArrayList<>(); l.add(d); RESULT = l; :}
+    | wildcard:w
+      {: List<Assignee> l = new ArrayList<>(); l.add(w); RESULT = l; :}
+    | non_empty_assignee_list:l COMMA decl:d
+      {: l.add(d); RESULT = l; :}
+    | non_empty_assignee_list:l COMMA wildcard:w
+      {: l.add(w); RESULT = l; :}
+;
+
+assignee_access
+  ::= identifier:x OPEN_BRACKET expr:e CLOSE_BRACKET
+      {: RESULT = new ArrayAccess(x, e); :}
+    | method_call:f OPEN_BRACKET expr:e CLOSE_BRACKET
+      {: RESULT = new ArrayAccess(f, e); :}
+    | LENGTH:l OPEN_PAREN expr:e1 CLOSE_PAREN OPEN_BRACKET expr:e2 CLOSE_BRACKET
+      {: RESULT = new ArrayAccess(new Len(e1, l.getLine(), 
+             l.getColumn()), e2); :}
+    | assignee_access:a OPEN_BRACKET expr:e CLOSE_BRACKET
+      {: RESULT = new ArrayAccess(a, e); :}
+;
+
+method_call
+  ::= identifier:i OPEN_PAREN expr_list:l CLOSE_PAREN
+      {: RESULT = new MethodCall(i, l); :}
+;
+
+procedure_call
+  ::= identifier:i OPEN_PAREN expr_list:l CLOSE_PAREN
+      {: RESULT = new ProcedureCall(i, l); :}
+;
+
+expr_list
+  ::= /* empty */
+      {: RESULT = new ArrayList<Expr>(); :}
+    | non_empty_expr_list:l
+      {: RESULT = l; :}
+;
+
+non_empty_expr_list
+  ::= expr:e
+      {: List<Expr> l = new ArrayList<>(); l.add(e); RESULT = l; :}
+    | non_empty_expr_list:l COMMA expr:e 
+      {: l.add(e); RESULT = l; :}
+;
+
+expr
+  ::= OPEN_PAREN expr:e CLOSE_PAREN
+      {: RESULT = e; :}
+    | identifier:x
+      {: RESULT = x; :}
+    | method_call:f
+      {: RESULT = f; :}
+    | expr:e1 OPEN_BRACKET expr:e2 CLOSE_BRACKET 
+      {: RESULT = new ArrayAccess(e1, e2); :}
+    | MINUS:o expr:e 
+      {: RESULT = new Unop(Unop.ops.NEG, e, o.getLine(), o.getColumn()); :}
+      %prec INT_NEGATION
+    | NOT:o expr:e
+      {: RESULT = new Unop(Unop.ops.NOT, e, o.getLine(), o.getColumn()); :}
+    | expr:e1 TIMES:o expr:e2
+      {: RESULT = new Binop(Binop.ops.TIMES, e1, e2); :}
+    | expr:e1 UPPER:o expr:e2
+      {: RESULT = new Binop(Binop.ops.UPPER, e1, e2); :}
+    | expr:e1 DIVIDE:o expr:e2
+      {: RESULT = new Binop(Binop.ops.DIVIDE, e1, e2); :}
+    | expr:e1 MODULO:o expr:e2
+      {: RESULT = new Binop(Binop.ops.MODULO, e1, e2); :}
+    | expr:e1 PLUS:o expr:e2
+      {: RESULT = new Binop(Binop.ops.PLUS, e1, e2); :}
+    | expr:e1 MINUS:o expr:e2
+      {: RESULT = new Binop(Binop.ops.MINUS, e1, e2); :}
+    | expr:e1 LT:o expr:e2
+      {: RESULT = new Binop(Binop.ops.LT, e1, e2); :}
+    | expr:e1 LEQ:o expr:e2
+      {: RESULT = new Binop(Binop.ops.LEQ, e1, e2); :}
+    | expr:e1 GEQ:o expr:e2
+      {: RESULT = new Binop(Binop.ops.GEQ, e1, e2); :}
+    | expr:e1 GT:o expr:e2
+      {: RESULT = new Binop(Binop.ops.GT, e1, e2); :}
+    | expr:e1 EQUAL:o expr:e2
+      {: RESULT = new Binop(Binop.ops.EQ, e1, e2); :}
+    | expr:e1 NOT_EQUAL:o expr:e2
+      {: RESULT = new Binop(Binop.ops.NEQ, e1, e2); :}
+    | expr:e1 AND:o expr:e2
+      {: RESULT = new Binop(Binop.ops.AND, e1, e2); :}
+    | expr:e1 OR:o expr:e2
+      {: RESULT = new Binop(Binop.ops.OR, e1, e2); :}
+    | INTEGER_LITERAL:n
+      {: RESULT = new IntLit((long)n.getAttribute(), 
+             n.getLine(), n.getColumn()); :}
+    | STRING_LITERAL:s
+      {: RESULT = new StrLit((String)s.getAttribute(), 
+             s.getLine(), s.getColumn()); :}
+    | CHARACTER_LITERAL:c
+      {: RESULT = new CharLit((Character)c.getAttribute(), 
+             c.getLine(), c.getColumn()); :}
+    | OPEN_BRACE:b expr_list:l CLOSE_BRACE
+      {: RESULT = new ArrayLit(l, b.getLine(), b.getColumn()); :}
+    | OPEN_BRACE:b non_empty_expr_list:l COMMA CLOSE_BRACE
+      {: RESULT = new ArrayLit(l, b.getLine(), b.getColumn()); :}
+    | TRUE:t
+      {: RESULT = new BoolLit(true, t.getLine(), t.getColumn()); :}
+    | FALSE:f
+      {: RESULT = new BoolLit(false, f.getLine(), f.getColumn()); :}
+    | LENGTH:l OPEN_PAREN expr:e CLOSE_PAREN
+      {: RESULT = new Len(e, l.getLine(), l.getColumn()); :}
+;

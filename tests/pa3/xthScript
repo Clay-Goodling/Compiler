@@ -1,0 +1,126 @@
+# xth test script
+#
+# This file is a test script for xth (xic Test Harness).  It
+# conforms to the following grammar:
+#
+#   ScriptFile      ::= Commands+
+#   Command         ::= build
+#                     | CompilerTest
+#   CompilerTest    ::= TestKind (\(TestName\))? ([TestPath])? ("CmdLineArgs")?
+#                           { (FileTest;)* }
+#   TestKind        ::= xic
+#   TestName        ::= LitString
+#   FileTest        ::= Filenames Description? FailureSet?
+#   Filenames       ::= Filename+
+#   Description     ::= LitString
+#   FailureSet      ::= Failure (, Failure)*
+#   Failure         ::= \( ErrorKind \)
+#                     | \( ErrorKind, LitString \)
+#
+#   TestPath        :   the path to the test files, enclosed in quotes,
+#                       relative to the path given in xth's -testpath flag.
+#   CmdLineArgs     :   command-line arguments for xic
+#   Filename        :   the name of a file, interpreted from TestPath.
+#   LitString       :   a literal string, enclosed in quotes.
+#   ErrorKind       :   one of, or a unique prefix of one of the following
+#                       strings: "Lexical Error", "Syntax Error", or
+#                       "Semantic Error".
+#
+# xth runs the commands in order of appearance.
+
+# build compiler first
+build
+
+xic ("Test --help") "--help" {
+    ;
+}
+
+xic ("Test --typecheck") "--typecheck -libpath $(testpath)" {
+    # Type-Checking Literals
+    test0.xi;
+
+    # Type-Checking Expressions
+    test1.xi;
+    test2.xi;
+
+    # Type-Checking Statements
+    test3.xi;
+
+    # Failure Tests
+    testfailure0.xi;
+    testfailure1.xi;
+    testfailure2.xi;
+    testfailure3.xi;
+    testfailure4.xi;
+    testfailure5.xi;
+    testfailure6.xi;
+    testfailure7.xi;
+    testfailure8.xi;
+    testfailure9.xi;
+    testfailure10.xi;
+    testfailure11.xi;
+
+    # Failure Testing - Literal Assignments
+    testfailureb0.xi;
+    testfailureb1.xi;
+    testfailureb2.xi;
+    testfailureb3.xi;
+    testfailureb13.xi;
+
+    # Failure Testing - Variable and Array Assignments
+    testfailureb4.xi;
+    testfailureb22.xi;
+    testfailure13.xi;
+
+    # Failure Testing - Unary Expressions
+    testfailureb5.xi;
+    testfailureb6.xi;
+
+    # Failure Testing - Binary Expressions
+    testfailureb7.xi;
+    testfailureb8.xi;
+    testfailureb9.xi;
+    testfailureb10.xi;
+    testfailureb11.xi;
+    testfailureb12.xi;
+    testfailureb14.xi;
+    testfailureb15.xi;
+    testfailureb16.xi;
+    testfailureb17.xi;
+    testfailureb18.xi;
+
+    # Failure Testing - Array Expressions
+    testfailureb19.xi;
+    testfailureb20.xi;
+    testfailureb21.xi;
+
+    # Declaring same variable twice
+    testfailure12.xi;
+    testfailure14.xi;
+
+    # Failure Testing - Using Interfaces
+    test4.xi;
+    testfailure15.xi;
+    testfailure16.xi;
+    testfailure17.xi;
+    testfailure18.xi;
+
+    # Failure Testing - Using Matching Interfaces
+    testfailure19.xi;
+    testfailure20.xi;
+
+    # Failed Autograder Tests
+    testauto0.xi;
+    testauto1.xi;
+    testauto2.xi;
+    testauto3.xi;
+    testauto4.xi;
+    testauto5.xi;
+    testauto6.xi;
+    testauto7.xi;
+    testauto8.xi;
+    testauto9.xi;
+    testauto10.xi;
+}
+
+xic ("Autograder tests") "--typecheck" {}

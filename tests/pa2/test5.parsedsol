@@ -1,0 +1,18 @@
+(()
+  ( 
+    (foo () ()
+      (
+        (i ([] int))
+        (i ([] bool))
+        (i ([] ([] int)))
+        (i ([] bool n))
+        (i ([] ([] ([] int c) b) a))
+        (i ([] ([] ([] ([] bool)) b) a))
+
+        (= i (1 2 3))
+        (= i (true false true))
+        (= i ("Hello" "World"))
+      )
+    )
+  ) 
+)

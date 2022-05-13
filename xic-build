@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# get absolute path to root directory
+script=`realpath $0`
+path=`dirname $script`
+
+# top level package
+src="src_jcg284_shg64_hos7_wc523"
+
+# write xic
+echo "#!/bin/bash" > $path/xic
+echo "java -cp \"$path:$path/bin:$path/lib/java_cup.jar:$path/lib/commons-cli-1.4.jar\" $src/main/XIC \"\$@\"" >> $path/xic
+
+# make xic executable and add to path
+chmod +x $path/xic
+ln -sf $path/xic ~/bin/xic
+
+# generate parser
+java -jar $path/lib/java_cup.jar -destdir $path/$src/parser $path/$src/parser/xi.cup
+
+# generate lexer
+jflex $path/$src/lexer/MyLexer.flex
+
+# compile everything
+javac -d $path/bin -cp "$path:$path/lib/java_cup.jar:$path/lib/commons-cli-1.4.jar" $path/$src/main/XIC.java

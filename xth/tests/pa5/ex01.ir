@@ -1,0 +1,30 @@
+(COMPUNIT
+ ex01
+ (FUNC
+  _Imain_paai
+  (SEQ
+   (MOVE (TEMP args) (TEMP _ARG0))
+   (MOVE (TEMP _temp1) (CONST 120))
+   (CALL_STMT (NAME _xi_alloc) (TEMP _temp1))
+   (MOVE (TEMP _temp2) (TEMP _RET0))
+   (MOVE (TEMP _temp0) (TEMP _temp2))
+   (MOVE (MEM (TEMP _temp0)) (CONST 14))
+   (MOVE (MEM (ADD (TEMP _temp0) (CONST 8))) (CONST 72))
+   (MOVE (MEM (ADD (TEMP _temp0) (CONST 16))) (CONST 101))
+   (MOVE (MEM (ADD (TEMP _temp0) (CONST 24))) (CONST 108))
+   (MOVE (MEM (ADD (TEMP _temp0) (CONST 32))) (CONST 108))
+   (MOVE (MEM (ADD (TEMP _temp0) (CONST 40))) (CONST 111))
+   (MOVE (MEM (ADD (TEMP _temp0) (CONST 48))) (CONST 44))
+   (MOVE (MEM (ADD (TEMP _temp0) (CONST 56))) (CONST 32))
+   (MOVE (MEM (ADD (TEMP _temp0) (CONST 64))) (CONST 87))
+   (MOVE (MEM (ADD (TEMP _temp0) (CONST 72))) (CONST 111))
+   (MOVE (MEM (ADD (TEMP _temp0) (CONST 80))) (CONST 114))
+   (MOVE (MEM (ADD (TEMP _temp0) (CONST 88))) (CONST 108))
+   (MOVE (MEM (ADD (TEMP _temp0) (CONST 96))) (CONST 100))
+   (MOVE (MEM (ADD (TEMP _temp0) (CONST 104))) (CONST 33))
+   (MOVE (MEM (ADD (TEMP _temp0) (CONST 112))) (CONST 10))
+   (MOVE (TEMP _temp3) (ADD (TEMP _temp0) (CONST 8)))
+   (CALL_STMT (NAME _Iprint_pai) (TEMP _temp3))
+   (MOVE (TEMP c3po) (CONST 167))
+   (MOVE (TEMP r2d2) (TEMP c3po))
+   (RETURN))))

@@ -1,0 +1,11 @@
+build
+
+xic ("Test --irgen") "-libpath $(testpath) --irgen -d $(testpath)" {
+    arracc07.xi;
+    assign09.xi;
+}
+
+xic ("Test --irgen -O") "-libpath $(testpath) --irgen -O -d $(testpath)" {
+    arracc07.xi;
+    assign09.xi;
+}

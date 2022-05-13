@@ -1,0 +1,2 @@
+#!/bin/bash
+java -cp "/home/vagrant/shared/4120Project:/home/vagrant/shared/4120Project/bin:/home/vagrant/shared/4120Project/lib/java_cup.jar:/home/vagrant/shared/4120Project/lib/commons-cli-1.4.jar" src_jcg284_shg64_hos7_wc523/main/XIC "$@"

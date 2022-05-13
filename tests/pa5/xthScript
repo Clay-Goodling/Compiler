@@ -1,0 +1,32 @@
+build
+
+xic ("Test ") "-target linux -libpath $(testpath)" {
+    test0.xi;
+    test1.xi;
+    test2.xi;
+    test3.xi;
+    test4.xi;
+    test5.xi;
+    test6.xi;
+    test7.xi;
+    test8.xi;
+    test9.xi;
+    test10.xi;
+    test11.xi;
+    test12.xi;
+    test13.xi;
+    test14.xi;
+    test15.xi;
+    test16.xi;
+    test17.xi;
+    test18.xi;
+    test19.xi;
+    test20.xi;
+    test21.xi;
+    test22.xi;
+    test23.xi;
+    test24.xi;
+    test25.xi;
+    arracc07.xi;
+    assign09.xi;
+}

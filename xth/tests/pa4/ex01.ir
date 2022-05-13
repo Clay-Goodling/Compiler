@@ -1,0 +1,13 @@
+(COMPUNIT
+ ex01
+ (FUNC
+  _Imain_paai
+  (SEQ
+   (SEQ (SEQ) (MOVE (TEMP args) (TEMP _ARG0)))
+   (SEQ
+    (SEQ
+     (SEQ)
+     (SEQ (SEQ) (SEQ) (MOVE (TEMP _temp2) (CONST 1)))
+     (MOVE (TEMP _temp4) (CALL (NAME _IunparseInt_aii) (TEMP _temp2)))
+     (CALL_STMT (NAME _Iprint_pai) (TEMP _temp4))))
+   (SEQ (RETURN)))))

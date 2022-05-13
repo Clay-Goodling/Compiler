@@ -1,0 +1,114 @@
+commit b39b921f93701320d87af1b4909993885dd82011
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Mon Feb 22 21:44:13 2021 -0500
+
+    fixed build script for autograder
+
+commit e4e61c684079002d063c2bc322fce1daf0618693
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Mon Feb 22 19:03:45 2021 -0500
+
+    testing and documentation
+
+commit 93cc75e21b87f8324740d1fac8eb30d22eb877c0
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Sun Feb 21 23:31:34 2021 -0500
+
+    minor bug fixes
+
+commit f9bf03788edad88a523703e2377a892cfd2ed37e
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Sun Feb 21 22:42:36 2021 -0500
+
+    added main file
+
+commit a885883540b368f81652145e8faf2dbe2fbaab41
+Author: vagrant <vagrant@cs4120>
+Date:   Mon Feb 22 03:36:04 2021 +0000
+
+    implemented cli
+
+commit 9d86e6228af2a13f860b3ad92850f075cddb83dd
+Author: vagrant <vagrant@cs4120>
+Date:   Sun Feb 21 20:33:19 2021 +0000
+
+    fixed charater handling
+
+commit ebb477e9ec35f16726b16bffe265042261468ca5
+Merge: 23415ed 1d0a761
+Author: vagrant <vagrant@cs4120>
+Date:   Sun Feb 21 19:39:23 2021 +0000
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/hos7/4120Project
+
+commit 23415ed6b58007e2c041e4fc22befd19589d160c
+Author: vagrant <vagrant@cs4120>
+Date:   Sun Feb 21 19:38:53 2021 +0000
+
+    character fix
+
+commit 1d0a761fb2c1264d0e959a784a39f47d642cb327
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Sun Feb 21 14:37:24 2021 -0500
+
+    fixed build to put xic in path
+
+commit 33fc96d6b8ab168b0b572a8902cf4c59dfbae7cd
+Author: James Clayton Goodling <jcg284@cornell.edu>
+Date:   Sun Feb 21 13:25:00 2021 -0500
+
+    Update makefile
+
+commit 41dd22ebdc0af01e76a671e44cf4d3a29bcd5aee
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Sat Feb 20 17:51:23 2021 -0500
+
+    added gitignore
+
+commit a582cb07bca1472f9745c472ca5cde4c7a43dc33
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Sat Feb 20 17:50:20 2021 -0500
+
+    restructured and added build script
+
+commit 61b92a2f6b2db75a16886447fd33bf8b9895210e
+Author: Susan Garry <shg64@cornell.edu>
+Date:   Fri Feb 19 20:15:10 2021 -0500
+
+    Keep track of bugs and issues
+
+commit 7a74eeb997b171ec5392a5949f8ce98cc65297bd
+Author: Susan Garry <shg64@cornell.edu>
+Date:   Fri Feb 19 19:12:43 2021 -0500
+
+    TestIt.java works, l:c format fixed, StringBuffer clears
+
+commit d2c1360abd3d05abba7b5fd23da18273f966581a
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Thu Feb 18 19:17:39 2021 -0500
+
+    grammar flex file progress
+
+commit b437385a2e95353185ebe2b5f4df6f27a3a9d526
+Author: vagrant <vagrant@cs4120>
+Date:   Thu Feb 18 23:03:44 2021 +0000
+
+    working on tokens
+
+commit 4d5b35e81b46011eb1d267f26624861d3775bb62
+Author: vagrant <vagrant@cs4120>
+Date:   Thu Feb 18 22:08:49 2021 +0000
+
+    using %standalone, changes to string, char, symbol
+
+commit 8e970577ec59fa806a2b81f669d0971f7435a628
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Tue Feb 16 19:17:04 2021 -0500
+
+    first draft of flex grammar
+
+commit de57ec1c13e316056cce5436198939706d943134
+Author: Henry Oswaldo Sanchez <hos7@cornell.edu>
+Date:   Tue Feb 16 15:39:54 2021 -0500
+
+    Initial commit

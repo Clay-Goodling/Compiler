@@ -1,0 +1,9 @@
+Found 1 leaked objects:
+0x5581b12fbfe0 (tests/thread_leak_test.c:30, sz=4, NORMAL)
+Found 2 leaked objects:
+0x5581b12fbec0 (tests/thread_leak_test.c:30, sz=4, NORMAL)
+0x5581b12fbf20 (tests/thread_leak_test.c:30, sz=4, NORMAL)
+Found 2 leaked objects:
+0x5581b12fbe90 (tests/thread_leak_test.c:30, sz=4, NORMAL)
+0x5581b12fbef0 (tests/thread_leak_test.c:30, sz=4, NORMAL)
+PASS threadleaktest (exit status: 0)

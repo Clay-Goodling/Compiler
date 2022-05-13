@@ -1,0 +1,13 @@
+#!/bin/sh
+
+WEBSEMESTER=2021sp
+XTH=xth.tar.gz
+
+cd `dirname $0`/..
+wget -nv -N http://www.cs.cornell.edu/courses/cs4120/$WEBSEMESTER/project/$XTH
+if [ -f "$XTH" ]; then
+    tar -zxf $XTH -C xth
+    rm $XTH
+else
+    echo "Warning: xth not updated"
+fi

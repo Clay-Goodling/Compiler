@@ -1,0 +1,18 @@
+
+build
+
+xic ("Test failed autograder tests") "-target linux -libpath $(testpath)" {
+    # Failed Autograder Tests
+    testauto0.xi;
+testauto1.xi;
+testauto2.xi;
+testauto3.xi;
+testauto4.xi;
+testauto5.xi;
+testauto6.xi;
+testauto7.xi;
+testauto8.xi;
+testauto9.xi;
+testauto10.xi;
+
+}

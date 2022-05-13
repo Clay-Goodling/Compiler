@@ -1,0 +1,270 @@
+commit 582f001f79f59f3f60e635274bd69cba60f348b7
+Author: vagrant <vagrant@cs4120>
+Date:   Mon Mar 22 22:24:59 2021 +0000
+
+    final commit of a3, minor changes.
+
+commit 39b1bfe12eb3fe8196c248f3960d528fc10d1a15
+Author: vagrant <vagrant@cs4120>
+Date:   Mon Mar 22 00:01:55 2021 +0000
+
+    a few more interface tests
+
+commit 877de648493659ac8af8d39e0589b427aaf0ba4c
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Sun Mar 21 19:48:09 2021 -0400
+
+    Tests and docs
+
+commit b75fdbc0db784c4c34bdd93043762c20ab4bb5f1
+Author: vagrant <vagrant@cs4120>
+Date:   Sat Mar 20 21:59:22 2021 +0000
+
+    everything works? with files actually added
+
+commit bf42b3a5b03f91793abc6e4d37747d151d4a9e91
+Author: vagrant <vagrant@cs4120>
+Date:   Sat Mar 20 21:56:18 2021 +0000
+
+    everything works?
+
+commit 975a809735e74c9d6b7988b5c2a1c6a046de1a85
+Author: vagrant <vagrant@cs4120>
+Date:   Sat Mar 20 03:04:58 2021 +0000
+
+    Typechecking expressiong and statements
+
+commit 399e27d4f2fad338e870f061aa2a3d8a06f24f50
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Thu Mar 18 23:55:59 2021 -0400
+
+    began work on type checking
+
+commit 2e0d38cc3e34e6f8d35e2fab485606374dfdb9f9
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Thu Mar 18 23:00:41 2021 -0400
+
+    added location data to ast nodes
+
+commit e6350c9db8c11ec6c03d35b0f360a1d04522662c
+Author: Susan Garry <shg64@cornell.edu>
+Date:   Thu Mar 18 20:00:12 2021 -0400
+
+    adding visitor file
+
+commit f62c4b7a5547be04489dd7c93343bb822aec8b50
+Author: vagrant <vagrant@cs4120>
+Date:   Thu Mar 18 03:34:27 2021 +0000
+
+    we fixed some of it
+
+commit dc5f7e2e30cb45fa7a78a735f7af849932bfe90b
+Author: vagrant <vagrant@cs4120>
+Date:   Thu Mar 18 03:28:36 2021 +0000
+
+    we broke it
+
+commit cb362f347216025f8a1a9223aade8f3d2c7c13be
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Wed Mar 17 19:59:38 2021 -0400
+
+    tests from p2 autograder
+
+commit 442d9daaa19d96550b790130e0a4ae94922e23d6
+Author: vagrant <vagrant@cs4120>
+Date:   Wed Mar 10 23:38:18 2021 +0000
+
+    final src for a2
+
+commit 44ddcc6daf4e505046e14ed2ae177f17f3798266
+Author: vagrant <vagrant@cs4120>
+Date:   Wed Mar 10 22:02:42 2021 +0000
+
+    debugging test1.xi
+
+commit 4c98478dcd3319fbd564102c03095c1b46d0d91f
+Author: vagrant <vagrant@cs4120>
+Date:   Wed Mar 10 05:35:26 2021 +0000
+
+    finished grammar, still some bugs
+
+commit 0ac0d68652ba9116ed63a12c65f6319cda4ebffd
+Author: vagrant <vagrant@cs4120>
+Date:   Wed Mar 10 05:35:06 2021 +0000
+
+    finished grammar, still some bugs
+
+commit be41acb3c14c89ecbc8a32fa62fb7093ca0612df
+Author: vagrant <vagrant@cs4120>
+Date:   Tue Mar 9 19:47:59 2021 +0000
+
+    pretty printer for parsing
+
+commit 96ea4b318ea73446e08d86452c75f0dd2a58e902
+Author: vagrant <vagrant@cs4120>
+Date:   Tue Mar 9 19:47:16 2021 +0000
+
+    pretty printer for parsing
+
+commit 74c8c22b504f4b87ad7e02d27c2439a646554af5
+Author: vagrant <vagrant@cs4120>
+Date:   Tue Mar 9 03:37:13 2021 +0000
+
+    work on ast
+
+commit fa3f169f4936f18c675efe51640e144bfb82a400
+Author: vagrant <vagrant@cs4120>
+Date:   Tue Mar 9 01:40:39 2021 +0000
+
+    Begining of AST
+
+commit f9e231f0dda13ec1fe2dbebe8a2c1f05b621fe64
+Author: vagrant <vagrant@cs4120>
+Date:   Mon Mar 8 19:18:01 2021 +0000
+
+    starting ast
+
+commit 6aceeca5e1cdda883fa0639a179eade1661377de
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Sun Mar 7 22:38:37 2021 -0500
+
+    reworked lexer to use cup Symbol
+
+commit 3f66376bc45d8f6f8eeed1994a035c27502edef4
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Sun Mar 7 20:41:31 2021 -0500
+
+    bug fix attempts
+
+commit 9e2e569fe57d8b8b1bb03976bee7e9cc2217c0ca
+Author: vagrant <vagrant@cs4120>
+Date:   Sun Mar 7 23:29:24 2021 +0000
+
+    temporary error fixes
+
+commit bc0bc1dfff2e3ceb5d6870af0bd23866df6875ce
+Author: vagrant <vagrant@cs4120>
+Date:   Fri Mar 5 00:27:25 2021 +0000
+
+    grammar sketch
+
+commit aa4826940b44fc53211a2d5e6ea613f5867567da
+Author: vagrant <vagrant@cs4120>
+Date:   Wed Mar 3 02:50:36 2021 +0000
+
+    parser setup
+
+commit b39b921f93701320d87af1b4909993885dd82011
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Mon Feb 22 21:44:13 2021 -0500
+
+    fixed build script for autograder
+
+commit e4e61c684079002d063c2bc322fce1daf0618693
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Mon Feb 22 19:03:45 2021 -0500
+
+    testing and documentation
+
+commit 93cc75e21b87f8324740d1fac8eb30d22eb877c0
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Sun Feb 21 23:31:34 2021 -0500
+
+    minor bug fixes
+
+commit f9bf03788edad88a523703e2377a892cfd2ed37e
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Sun Feb 21 22:42:36 2021 -0500
+
+    added main file
+
+commit a885883540b368f81652145e8faf2dbe2fbaab41
+Author: vagrant <vagrant@cs4120>
+Date:   Mon Feb 22 03:36:04 2021 +0000
+
+    implemented cli
+
+commit 9d86e6228af2a13f860b3ad92850f075cddb83dd
+Author: vagrant <vagrant@cs4120>
+Date:   Sun Feb 21 20:33:19 2021 +0000
+
+    fixed charater handling
+
+commit ebb477e9ec35f16726b16bffe265042261468ca5
+Merge: 23415ed 1d0a761
+Author: vagrant <vagrant@cs4120>
+Date:   Sun Feb 21 19:39:23 2021 +0000
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/hos7/4120Project
+
+commit 23415ed6b58007e2c041e4fc22befd19589d160c
+Author: vagrant <vagrant@cs4120>
+Date:   Sun Feb 21 19:38:53 2021 +0000
+
+    character fix
+
+commit 1d0a761fb2c1264d0e959a784a39f47d642cb327
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Sun Feb 21 14:37:24 2021 -0500
+
+    fixed build to put xic in path
+
+commit 33fc96d6b8ab168b0b572a8902cf4c59dfbae7cd
+Author: James Clayton Goodling <jcg284@cornell.edu>
+Date:   Sun Feb 21 13:25:00 2021 -0500
+
+    Update makefile
+
+commit 41dd22ebdc0af01e76a671e44cf4d3a29bcd5aee
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Sat Feb 20 17:51:23 2021 -0500
+
+    added gitignore
+
+commit a582cb07bca1472f9745c472ca5cde4c7a43dc33
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Sat Feb 20 17:50:20 2021 -0500
+
+    restructured and added build script
+
+commit 61b92a2f6b2db75a16886447fd33bf8b9895210e
+Author: Susan Garry <shg64@cornell.edu>
+Date:   Fri Feb 19 20:15:10 2021 -0500
+
+    Keep track of bugs and issues
+
+commit 7a74eeb997b171ec5392a5949f8ce98cc65297bd
+Author: Susan Garry <shg64@cornell.edu>
+Date:   Fri Feb 19 19:12:43 2021 -0500
+
+    TestIt.java works, l:c format fixed, StringBuffer clears
+
+commit d2c1360abd3d05abba7b5fd23da18273f966581a
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Thu Feb 18 19:17:39 2021 -0500
+
+    grammar flex file progress
+
+commit b437385a2e95353185ebe2b5f4df6f27a3a9d526
+Author: vagrant <vagrant@cs4120>
+Date:   Thu Feb 18 23:03:44 2021 +0000
+
+    working on tokens
+
+commit 4d5b35e81b46011eb1d267f26624861d3775bb62
+Author: vagrant <vagrant@cs4120>
+Date:   Thu Feb 18 22:08:49 2021 +0000
+
+    using %standalone, changes to string, char, symbol
+
+commit 8e970577ec59fa806a2b81f669d0971f7435a628
+Author: Clay Goodling <jcg284@cornell.edu>
+Date:   Tue Feb 16 19:17:04 2021 -0500
+
+    first draft of flex grammar
+
+commit de57ec1c13e316056cce5436198939706d943134
+Author: Henry Oswaldo Sanchez <hos7@cornell.edu>
+Date:   Tue Feb 16 15:39:54 2021 -0500
+
+    Initial commit
